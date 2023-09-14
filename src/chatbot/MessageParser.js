@@ -1,17 +1,23 @@
-class MessageParser {
-    constructor(actionProvider, state) {
-      this.actionProvider = actionProvider;
-      this.state = state;
-    }
-  
-    parse(message) {
-      console.log(message)
-      const lowercase = message.toLowerCase();
+import React from 'react';
 
-      if (lowercase.includes("help")) {
-        this.actionProvider.greet();
-      }
+// rule set that decides which action to trigger
+const MessageParser = ({ children, actions }) => {
+  const parse = (message) => {
+    if (message.includes('hello')) {
+      actions.handleHello();
     }
-  }
-  
-  export default MessageParser;
+  };
+
+  return (
+    <div>
+      {React.Children.map(children, (child) => {
+        return React.cloneElement(child, {
+          parse: parse,
+          actions: {},
+        });
+      })}
+    </div>
+  );
+};
+
+export default MessageParser;
