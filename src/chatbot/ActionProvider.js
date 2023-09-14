@@ -10,7 +10,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
-  // Put the handleHello function in the actions object to pass to the MessageParser
+  //handleHello function in the actions object to pass to the MessageParser
   return (
     <div>
       {React.Children.map(children, (child) => {
